@@ -1,0 +1,73 @@
+*,*::after,*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 400;
+    transition: all .1s linear;
+}
+
+body,html {
+    overflow-x: hidden;
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+button, a {
+    border: none;
+    text-decoration: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+input[type=file] {
+    display: none;
+}
+
+section {
+    padding: 80px 0;
+}
+
+.btn {
+    background-color: #df741a;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:hover {
+        color: #df741a;
+        background-color: black;
+        
+    }
+}
+
+.page {
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1230px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+@import "header";
+@import "service";
+@import "form";
+@import "alert";

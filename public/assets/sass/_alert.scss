@@ -1,0 +1,66 @@
+.alert {
+    position: absolute;
+    right: 0;
+    top: 45px;
+    width: 20%;
+    transition: all 1s linear;
+    &.hide {
+        margin-right: -45%;
+    }
+    &-danger {  
+        background-color: red;  
+        color: white;
+    }
+    &-success { 
+        background-color: green;
+        color: white;
+    }
+    &-info {
+        padding: 30px 15px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        position: relative;
+        * {
+            font-family: inherit;
+        }
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            grid-row-gap: 8px;
+        }
+        h6 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+        }
+        .alert-close {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    }
+    .alert-line {
+        background-color: white;
+        height: 2.5px;
+        position: absolute;
+        bottom: 1.5px;
+        left: 10px;
+        width: 1%;
+        animation: expandLine 5s linear 1s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes expandLine {
+    0% {
+        width: 1%;
+    }
+    100% {
+        width: 100%;
+    }
+}

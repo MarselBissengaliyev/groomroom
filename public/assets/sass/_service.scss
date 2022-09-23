@@ -1,0 +1,114 @@
+.service {
+    display: flex;
+    h1 {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 30px;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 50px;
+        justify-content: space-between;
+        @media (max-width: 1190px) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 30px;
+            grid-row-gap: 15px;
+        }
+        @media (max-width: 570px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    &__item {
+        box-shadow: 0px 1px 10px 2px rgba(34, 60, 80, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        position: relative;
+        & .form__upload {
+            margin-top: 15px;
+            &:hover {
+                background-color: #fff;
+            }
+        }
+        img {
+            border-radius: 8px;
+        }
+        h6 {
+            font-weight: 700;
+            font-size: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        p {
+            background-color: green;
+            margin-bottom: 15px;
+            text-align: right;
+            padding: 8px;
+            color: white;
+            margin-right: -15px;
+            margin-left: auto;
+            width: 80%;
+            border-top-left-radius: 50%;
+        }
+        select {
+            outline: none;
+            display: block;
+            background-color: green;
+            margin-bottom: 15px;
+            text-align: right;
+            padding: 8px;
+            color: white;
+            margin-right: -15px;
+            margin-left: auto;
+            width: 80%;
+            border-top-left-radius: 50%;
+        }
+        a  {
+            display: block;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 15px;
+            padding: 0 8px;
+            height: 30px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            bottom: calc(100%);
+            opacity: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 5px;
+            align-items: center;
+            background-color: red;
+            width: auto;
+            color: white;
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        &:hover {
+            background-color: #df741a;
+            img {
+                border: 1px solid white;
+            }
+            h6 {
+                color: white;
+            }
+            a {
+                opacity: 1;
+            }
+        }
+    }
+    &__btn {
+        margin: 40px auto 0;
+        max-width: 200px;
+    }
+}

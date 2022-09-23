@@ -1,0 +1,25 @@
+.header {
+    box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 15px;
+    }
+    &__nav {
+        display: flex;
+        grid-column-gap: 15px;
+        align-items: center;
+        a, button {
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+        a:hover {
+            color: #df741a;
+        }
+    }
+}
