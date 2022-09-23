@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Animal;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,8 @@ class AnimalController extends Controller
         Animal::create(
             $params['name'],
             $params['picture'],
-            $userId
+            $userId,
+            'new'
         );
 
         return redirect()->route('user', ['userId' => $userId])->with('success', 'Заказ был успешно добавлен');
@@ -41,5 +43,35 @@ class AnimalController extends Controller
         return redirect()
             ->route('user', ['userId' => $userId])
             ->with('success', 'Заказ успешно был удален');
+    }
+
+    public function updateStatus(Request $request, $animalId) {
+        $params = $request->validate([
+            "status-$animalId" => 'required',
+            "picture-$animalId" => 'required'
+        ]);
+
+        $user = Auth::user();
+        if (!$user->isAdmin()) {
+            return redirect()->route('home')->with('error', 'У вас недостаточно прав.');
+        }
+
+        try {
+            $animal = Animal::query()
+                ->where('id', $animalId)
+                ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return back()->with('error', 'Такого заказа не сущесвует.');
+        }
+
+        $picturePath = $request->file("picture-$animalId")->store('animals');
+        $params["picture-$animalId"] = $picturePath;
+
+        $animal->update([
+            'status' => $params["status-$animalId"],
+            'picture' => $params["picture-$animalId"],
+        ]);
+
+        return redirect()->route('admin', ['adminId' => $user->id])->with('success', 'Статус успешно был изменен');
     }
 }

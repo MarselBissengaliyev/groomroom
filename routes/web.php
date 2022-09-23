@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home', ['success' => null]);
+    $animals = Animal::query()->where('status', 'finished')->get();
+    return view('home', ['success' => null, 'animals' => $animals]);
 })->name('home');
 
 Route::post('/register', [AuthController::class, 'createUser'])->name('register');
@@ -26,7 +27,7 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 
 Route::get('/user/{userId}', function ($userId) {
     $authId = Auth::user() ? Auth::user()->id : null;
-    $animals = Animal::query()->where('user_id', $authId)->get();
+    $animals = Animal::query()->where('user_id', $authId)->orderBy('created_at')->get();
     if ($authId == $userId) {
         return view('user', ['success' => null, 'animals' => $animals]);
     } else {
@@ -38,3 +39,20 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/create', [AnimalController::class, 'create'])->name('create');
 
 Route::get('/delete/{animalId}', [AnimalController::class, 'delete'])->name('delete');
+
+Route::get('/admin/{adminId}', function($adminId) {
+    $user = Auth::user() ?? null;
+    if (!$user->isAdmin()) {
+        return redirect()->route('home')->with('error', 'У вас недостаточно прав.');
+    }
+    if ($user->id != $adminId) {
+        return redirect()->route('home')->with('error', 'Вы не можете перейти по данному url');
+    }
+
+    $animals = Animal::all();
+    return view('admin', ['animals' => $animals, 'success' => null]);
+})->name('admin');
+
+Route::post('/update-animal/{animalId}', [
+    AnimalController::class, 'updateStatus'])
+    ->name('update-status');

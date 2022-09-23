@@ -37,6 +37,19 @@
                 background-color: #fff;
             }
         }
+        button {
+            padding: 8px 15px;
+            outline: none;
+            width: 100%;
+            border: none;
+            border: 1px solid #000;
+            background-color: transparent;
+            color: #757575;
+            margin-top: 15px;
+            &:hover {
+                background-color: #fff;
+            }
+        }
         img {
             border-radius: 8px;
         }

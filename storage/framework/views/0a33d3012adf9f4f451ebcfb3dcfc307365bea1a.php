@@ -41,26 +41,23 @@
     <div class="service__inner container">
         <h1>Выполненные услуги</h1>
         <div class="service__content">
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="<?php echo e(asset('assets/img/cat.jpg')); ?>" alt="">
-                <h6>Барсик</h6>
-            </div>
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="<?php echo e(asset('assets/img/dog.jpg')); ?>" alt="">
-                <h6>Шарик</h6>
-            </div>
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="<?php echo e(asset('assets/img/cat2.jpg')); ?>" alt="">
-                <h6>Муська</h6>
-            </div>
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="<?php echo e(asset('assets/img/dog2.jpg')); ?>" alt="">
-                <h6>Бруно</h6>
-            </div>
+            <?php $__currentLoopData = $animals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $animal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="service__item">
+                    <p>
+                        <?php if($animal->status === 'new'): ?>
+                            Новая
+                        <?php endif; ?>
+                        <?php if($animal->status === 'processing'): ?>
+                            Обработка данных
+                        <?php endif; ?>
+                        <?php if($animal->status === 'finished'): ?>
+                            Услуга оказанна
+                        <?php endif; ?>
+                    </p>
+                    <img src="<?php echo e(Storage::url($animal->picture)); ?>" alt="">
+                    <h6><?php echo e($animal->name); ?></h6>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
         <a class="service__btn btn" href="user.html">Подать заявку</a>
     </div>

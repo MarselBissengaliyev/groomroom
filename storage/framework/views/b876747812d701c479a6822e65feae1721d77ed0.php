@@ -24,8 +24,10 @@
                     <a href="<?php echo e(route('logout')); ?>">Вытий</a>
                     <?php endif; ?>
                     
-                    <?php if(auth()->user()->isAdmin()): ?>
-                        <a href="admin.html">Админ панель</a>
+                    <?php if(auth()->user() && auth()->user()->isAdmin()): ?>
+                        <a href="<?php echo e(route('admin', ['adminId' => auth()->user()->id])); ?>">
+                            Админ панель
+                        </a>
                     <?php endif; ?>
                 </nav>
             </div>

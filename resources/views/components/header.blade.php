@@ -24,8 +24,10 @@
                     <a href="{{ route('logout') }}">Вытий</a>
                     @endauth
                     
-                    @if (auth()->user()->isAdmin())
-                        <a href="admin.html">Админ панель</a>
+                    @if (auth()->user() && auth()->user()->isAdmin())
+                        <a href="{{ route('admin', ['adminId' => auth()->user()->id]) }}">
+                            Админ панель
+                        </a>
                     @endif
                 </nav>
             </div>

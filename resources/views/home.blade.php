@@ -41,26 +41,23 @@
     <div class="service__inner container">
         <h1>Выполненные услуги</h1>
         <div class="service__content">
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="{{ asset('assets/img/cat.jpg') }}" alt="">
-                <h6>Барсик</h6>
-            </div>
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="{{asset('assets/img/dog.jpg')}}" alt="">
-                <h6>Шарик</h6>
-            </div>
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="{{asset('assets/img/cat2.jpg')}}" alt="">
-                <h6>Муська</h6>
-            </div>
-            <div class="service__item">
-                <p>Услуга оказана</p>
-                <img src="{{asset('assets/img/dog2.jpg')}}" alt="">
-                <h6>Бруно</h6>
-            </div>
+            @foreach ($animals as $animal)
+                <div class="service__item">
+                    <p>
+                        @if ($animal->status === 'new')
+                            Новая
+                        @endif
+                        @if ($animal->status === 'processing')
+                            Обработка данных
+                        @endif
+                        @if ($animal->status === 'finished')
+                            Услуга оказанна
+                        @endif
+                    </p>
+                    <img src="{{ Storage::url($animal->picture) }}" alt="">
+                    <h6>{{ $animal->name }}</h6>
+                </div>
+            @endforeach
         </div>
         <a class="service__btn btn" href="user.html">Подать заявку</a>
     </div>
