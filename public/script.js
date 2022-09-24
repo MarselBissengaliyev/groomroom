@@ -11,13 +11,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 6000)
 
 
-    function pic(file) {
-        var reg = /.+(\.jpeg|\.jpeg|\.gif)$/i;
-        if (file == undefined) {
-            return false;
-        }
-        return reg.test(file);
-    };
-
-
 })

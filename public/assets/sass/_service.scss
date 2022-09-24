@@ -15,8 +15,8 @@
     &__content {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-column-gap: 50px;
         justify-content: space-between;
+        gap: 30px;
         @media (max-width: 1190px) {
             grid-template-columns: repeat(2, 1fr);
             grid-column-gap: 30px;
